@@ -8,35 +8,33 @@
 
 # 6. Escreva uma função que receba uma lista de números e retorne outra lista com os números primos presentes.
 
-def extract_prime(list_numbers:list):
-    '''Funcao que recebe uma lista de valores e retorna uma lista com os primos.
+def verifica_primo(num):
+    if num <= 1:
+        return False
+    if num <= 3:
+        return True
+    if num % 2 == 0 or num % 3 == 0:
+        return False
+    i = 5
+    while i * i <= num:
+        if num % i == 0 or num % (i + 2) == 0:
+            return False
+        i += 6
+    return True
 
-    Args: list_numbers (list) -> lista de numeros em análise.
-
-    Returns: list_prime (list) -> lista de primos extraídos.
-    
-    '''
-
-    # Variáveis
-    list_prime = []
-    primo = False
-    
-    for number in list_numbers:
-        if number in [1,2]:
-            list_prime.append(number)
-        else:
-            for i in range(2,number):
-                if number%i == 0:
-                    break
-                else:
-                    list_prime.append(number)
-
-    return list_prime
+def primo_lista(numbers):
+    primo_nums = []
+    for num in numbers:
+        if verifica_primo(num):
+            primo_nums.append(num)
+    return primo_nums
 
 # Lista a ser recebida:
 list_test = [2,5,6,34,3,2,1,6,0,8,6,21,13,60]
 
-# Lista resposta:
-list_resposta = extract_prime(list_test)
+lista_primos = primo_lista(list_test)
 
-print(list_resposta)
+print(lista_primos)
+
+# Observação: Apenas para esta questão fiz o uso do ChatGPT devido ao tempo gasto
+# com diversos erros na construção da minha própria função.
